@@ -39,8 +39,11 @@ public class GenAIController {
     }
 
     @GetMapping("/generate-image-options")
-    public List<String> generateImageOptions(@RequestParam String prompt){
-        ImageResponse imageResponse = imageService.generateImageOptions(prompt);
+    public List<String> generateImageOptions(@RequestParam String prompt,
+                                             @RequestParam(defaultValue = "1") int n,
+                                             @RequestParam(defaultValue = "512") int height,
+                                             @RequestParam(defaultValue = "512") int width){
+        ImageResponse imageResponse = imageService.generateImageOptions(prompt,n,height,width);
         return imageResponse.getResults().stream()
                 .map(result -> result.getOutput().getUrl())
                 .toList();

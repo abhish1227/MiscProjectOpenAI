@@ -23,14 +23,25 @@ public class ImageService {
 
     }
 
-    public ImageResponse generateImageOptions(String prompt){
+    public ImageResponse generateImageOptions(String prompt, int n, int height, int width){
+//        return openAiImageModel.call(
+//                new ImagePrompt(prompt,
+//                        OpenAiImageOptions.builder()
+//                                .model("dall-e-2")
+//                                .N(2)
+//                                .height(512)
+//                                .width(512)
+//                                .build()
+//                )
+//        );
+
         return openAiImageModel.call(
                 new ImagePrompt(prompt,
                         OpenAiImageOptions.builder()
                                 .model("dall-e-2")
-                                .N(2)
-                                .height(512)
-                                .width(512)
+                                .N(n)
+                                .height(height)
+                                .width(width)
                                 .build()
                 )
         );
